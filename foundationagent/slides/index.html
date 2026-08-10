@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Foundation Agents 综述中文在线互动幻灯片：框架、证据边界与研究议程。">
+  <meta name="theme-color" content="#080d19">
+  <title>Foundation Agents · 在线演讲</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#slide-1">跳到幻灯片</a>
+
+  <header class="deck-header">
+    <a class="deck-brand" href="../" aria-label="返回深度报告">CODEXDEMO</a>
+    <div class="deck-context"><span>FOUNDATION AGENTS</span><i></i><span>DEEP DIVE</span></div>
+    <div class="header-actions">
+      <a href="../" title="返回深度报告">报告</a>
+      <button type="button" data-action="overview" title="总览（O）">总览</button>
+      <button type="button" data-action="fullscreen" title="全屏（F）">全屏</button>
+    </div>
+  </header>
+
+  <main class="deck" id="deck" aria-live="polite">
+    <section class="slide theme-midnight is-active" id="slide-1" data-title="Foundation Agent 不是更大的 LLM" aria-hidden="false">
+      <div class="slide-inner title-composition">
+        <div class="superline">PAPER DEEP DIVE · ARXIV:2504.01990</div>
+        <h1>Foundation Agent<br><em>不是更大的 LLM</em></h1>
+        <p class="title-dek">它是一套把内部状态、持续学习、群体协作与安全治理连在一起的系统愿景。</p>
+        <div class="title-meta"><span>中文技术分享</span><span>16 张</span><span>约 25 分钟</span></div>
+      </div>
+      <aside class="speaker-note">开场不要从目录讲起。先建立核心张力：如果 agent 只是“LLM 加工具”，本文何必写 396 页？作者真正想定义的是一个能够感知、记忆、学习、行动、自我改进、进入社会并承担风险的闭环系统。来源：PDF pp.16–37。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-2" data-title="这篇论文最像地图，而不是定律" aria-hidden="true">
+      <div class="slide-inner verdict-composition">
+        <div class="chapter-mark">01 · THE VERDICT</div>
+        <h2>这篇论文最像<strong>地图</strong>，<br>而不是<strong>定律</strong></h2>
+        <div class="verdict-axis" aria-label="从导航价值到因果证据的评级">
+          <div><span>B</span><p>导航价值</p><small>模块完整、连接广</small></div>
+          <div><span>C−</span><p>证据综合</p><small>叙事选择、非系统综述</small></div>
+          <div><span>D</span><p>高风险决策依据</p><small>缺因果与稳定量化</small></div>
+        </div>
+        <p class="takeaway">用它找问题、搭架构；不要用它证明机制已经成立。</p>
+      </div>
+      <aside class="speaker-note">这是整场演讲的判断框架。B/C−/D 是本报告定性评级，并非论文评分。后面所有内容都围绕一个区分：分类的价值可以很高，但分类不是证据，愿景也不是验证。</aside>
+    </section>
+
+    <section class="slide theme-blue" id="slide-3" data-title="单体 agent 被重写成有内部状态的闭环" aria-hidden="true">
+      <div class="slide-inner loop-composition">
+        <div class="chapter-mark light">02 · THE AGENT LOOP</div>
+        <h2>单体 agent 被重写成<br><strong>有内部状态的闭环</strong></h2>
+        <div class="loop-line" aria-label="感知、学习、推理、执行和环境转移组成的闭环">
+          <div><b>P</b><span>感知</span><small>环境 → 观察</small></div><i>→</i>
+          <div><b>L</b><span>学习</span><small>更新内部状态</small></div><i>→</i>
+          <div><b>R</b><span>推理</span><small>形成行动</small></div><i>→</i>
+          <div><b>E</b><span>执行</span><small>作用于世界</small></div><i>→</i>
+          <div><b>T</b><span>转移</span><small>世界改变</small></div>
+        </div>
+        <div class="mental-state"><span>M<sub>t</sub></span><p>memory · world model · emotion · goal · reward · …</p></div>
+        <p class="takeaway light-copy">规划是内部行动；感知与执行也应受记忆、目标和世界模型调制。</p>
+      </div>
+      <aside class="speaker-note">这一页是论文最有用的统一语言。可口述五个接口，但不要陷入公式。强调 M_t 将原本分散的 memory、world model、emotion、goal、reward 统一为内部状态。局限：这是接口草图，不是稳定性或性能定理。来源：PDF p.32 及 Chapter 1。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-4" data-title="作者把近一半篇幅给了单体核心组件" aria-hidden="true">
+      <div class="slide-inner coverage-composition">
+        <div class="chapter-mark">03 · COVERAGE</div>
+        <h2>作者把近一半篇幅<br>给了<strong>单体核心组件</strong></h2>
+        <div class="slide-bars" role="img" aria-label="四部分篇幅比例">
+          <div><label><b>Part I</b> 脑启发单体</label><span><i style="--w:100%"></i></span><strong>115</strong></div>
+          <div><label><b>Part II</b> 自进化</label><span><i style="--w:43.5%"></i></span><strong>50</strong></div>
+          <div><label><b>Part III</b> 多智能体</label><span><i style="--w:44.3%"></i></span><strong>51</strong></div>
+          <div><label><b>Part IV</b> 安全</label><span><i style="--w:33.9%"></i></span><strong>39</strong></div>
+        </div>
+        <div class="coverage-callout"><strong>45.1%</strong><p>Part I 占四个主题部分的比例</p><small>篇幅代表覆盖重心，不代表证据强度。</small></div>
+      </div>
+      <aside class="speaker-note">四个主题部分按目录起始页分段估算，共约 255 页：115 / 50 / 51 / 39。用这一页帮助听众形成结构感。提醒：不能把篇幅当成熟度或重要性。来源：PDF 目录，pp.38–292。</aside>
+    </section>
+
+    <section class="slide theme-sand" id="slide-5" data-title="脑启发最好被理解为待检验假设" aria-hidden="true">
+      <div class="slide-inner split-claim">
+        <div class="chapter-mark">04 · BRAIN-INSPIRED</div>
+        <div class="claim-left"><h2>脑启发应该是<br><strong>待检验的假设</strong></h2><p>不是脑区复刻，也不是能力来源的自动证明。</p></div>
+        <div class="claim-right">
+          <div><span>可检验</span><strong>多时间尺度记忆巩固</strong></div>
+          <div><span>可检验</span><strong>目标驱动的主动感知</strong></div>
+          <div><span>可检验</span><strong>全局广播与奖励调制</strong></div>
+          <p>关键基线：同参数、同数据、同预算的非脑启发架构。</p>
+        </div>
+      </div>
+      <aside class="speaker-note">作者也承认脑功能来自分布式网络，类比只是 guidepost。现有证据很少直接比较某个脑机制假设与强非脑启发基线。把“brain-inspired”拆成可消融机制，才有研究价值。来源：PDF pp.18、35、40–152。</aside>
+    </section>
+
+    <section class="slide theme-midnight" id="slide-6" data-title="十层技术地图可以压缩成三个问题" aria-hidden="true">
+      <div class="slide-inner map-composition">
+        <div class="chapter-mark light">05 · THE TECH MAP</div>
+        <h2>十层技术地图，<br>其实在回答<strong>三个问题</strong></h2>
+        <div class="three-questions">
+          <article><span>01</span><h3>个体如何形成行动？</h3><p>认知 · 记忆 · 世界模型 · 奖励与情绪 · 感知 · 行动与工具</p></article>
+          <article><span>02</span><h3>能力如何跨时间变化？</h3><p>prompt · workflow · tool · holistic agent · 科学发现</p></article>
+          <article><span>03</span><h3>能力如何进入社会？</h3><p>团队 · 拓扑 · 交互 · 决策 · 协议 · 集体智能 · 安全</p></article>
+        </div>
+        <p class="map-foot">分类不是严格 MECE：planning、memory、world model、tool 与 learning 在多章交叉。</p>
+      </div>
+      <aside class="speaker-note">不要逐项读十层 taxonomy。用三个问题压缩复杂度：行动如何产生、能力如何随时间变化、能力如何进入社会。听众因此能记住论文结构，而不是记住一长串术语。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-7" data-title="自进化最危险的不是改，而是不知道改了什么" aria-hidden="true">
+      <div class="slide-inner evolution-composition">
+        <div class="chapter-mark">06 · SELF-EVOLUTION</div>
+        <h2>自进化最危险的不是“改”，<br>而是<strong>不知道改了什么</strong></h2>
+        <div class="evolution-scale">
+          <div><span>浅</span><b>context</b><small>任务内搜索</small></div>
+          <i></i><div><b>memory</b><small>跨任务状态</small></div>
+          <i></i><div><b>prompt</b><small>行为入口</small></div>
+          <i></i><div><b>workflow / tool</b><small>执行结构</small></div>
+          <i></i><div><b>weights / code / reward</b><small>系统本体</small><span>深</span></div>
+        </div>
+        <div class="four-gates"><span>谁授权？</span><span>是否持久？</span><span>谁独立验收？</span><span>如何回滚？</span></div>
+        <p class="takeaway">Reflexion 不等于持久进化；开发者微调也不等于 agent 自主进化。</p>
+      </div>
+      <aside class="speaker-note">论文把 prompt、workflow、tool、holistic agent，以及 online/offline/hybrid 放入同一自进化框架，导航价值很高。但概念范围过宽。建议用四个 gate 重新定义：授权、持久性、独立验收、回滚。来源：PDF pp.156–189。</aside>
+    </section>
+
+    <section class="slide theme-violet" id="slide-8" data-title="科学发现是最可信的自进化场景" aria-hidden="true">
+      <div class="slide-inner science-composition">
+        <div class="chapter-mark light">07 · SCIENTIFIC DISCOVERY</div>
+        <h2>科学发现是最可信的<br><strong>自进化场景</strong></h2>
+        <div class="science-loop"><span>提出假设</span><i>→</i><span>规划实验</span><i>→</i><span>获得观测</span><i>→</i><span>更新知识</span><i>↺</i></div>
+        <div class="science-tension">
+          <div><b>为什么可信</b><p>新知识可以通过外部实验反馈，更新 memory 与 world model。</p></div>
+          <div><b>为什么仍不通用</b><p>强案例集中在窄域、可脚本化或高度工程化环境。</p></div>
+        </div>
+        <p class="kl-note"><b>KL intelligence 的问题：</b>真实世界分布 P<sub>W</sub> 正是未知对象，实际无法直接计算；单调增长只在理想条件的期望上成立。</p>
+      </div>
+      <aside class="speaker-note">可以快速提到 Genesis、ChemAgent、AlphaGeometry 等案例，但不要堆数字。重点是科学发现具备外部可验证信号，因此比自我反思更像真实的能力—知识闭环。KL IQ 是启发性理论草图：不可观测、表示依赖、忽略成本，且只在期望上单调。来源：PDF pp.190–202。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-9" data-title="更多 agent 不自动产生集体智能" aria-hidden="true">
+      <div class="slide-inner mas-composition">
+        <div class="chapter-mark">08 · MULTI-AGENT SYSTEMS</div>
+        <h2>更多 agent<br><strong>不自动产生集体智能</strong></h2>
+        <div class="budget-equation"><span>群体得分</span><b>−</b><span>额外 token / 调用 / judge / 延迟</span><b>=</b><strong>边际净价值</strong></div>
+        <div class="mas-questions">
+          <div><b>错误是否独立？</b><p>同一基础模型往往共享偏差。</p></div>
+          <div><b>组织是否必要？</b><p>团队、拓扑和协议要做因果消融。</p></div>
+          <div><b>尾部风险如何变化？</b><p>串谋、信息瓶颈与权力集中可能放大。</p></div>
+        </div>
+        <p class="takeaway">最关键的 benchmark：固定总预算下，最强 MAS 是否仍优于最强单体。</p>
+      </div>
+      <aside class="speaker-note">Part III 的优点是把 MAS 当社会系统：私有状态、共享工作区、规范、通信与协调。局限是大量实验没有严格固定 token、调用、采样与 judge 预算。规模效应必须用边际净价值重测。来源：PDF pp.203–253。</aside>
+    </section>
+
+    <section class="slide theme-red" id="slide-10" data-title="安全对象不是模型输出，而是完整闭环" aria-hidden="true">
+      <div class="slide-inner safety-composition">
+        <div class="chapter-mark light">09 · FULL-STACK SAFETY</div>
+        <h2>安全对象不是模型输出，<br>而是<strong>完整闭环</strong></h2>
+        <div class="attack-chain" aria-label="从输入到群体的攻击链">
+          <span>Prompt</span><i>→</i><span>Brain</span><i>→</i><span>Memory</span><i>→</i><span>Tool</span><i>→</i><span>Action</span><i>→</i><span>Environment</span><i>→</i><span>Agents</span>
+        </div>
+        <div class="safety-controls"><span>provenance</span><span>taint tracking</span><span>least privilege</span><span>trajectory monitoring</span><span>isolation</span><span>rollback</span></div>
+        <p class="takeaway light-copy">持久记忆把一次注入变成长期污染；多智能体把局部错误变成组织级级联。</p>
+      </div>
+      <aside class="speaker-note">不要只讲 jailbreak。攻击可以经感知、工具、记忆、环境和 agent 间消息传播。真正的安全单元应从单轮输出升级为完整轨迹与影响范围。来源：PDF pp.254–292。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-11" data-title="参考文献很多，不等于证据链完整" aria-hidden="true">
+      <div class="slide-inner evidence-composition">
+        <div class="chapter-mark">10 · EVIDENCE AUDIT</div>
+        <h2>参考文献很多，<br><strong>不等于证据链完整</strong></h2>
+        <div class="evidence-numbers">
+          <div><strong>1,606</strong><span>条参考文献</span></div>
+          <div><strong>76.7%</strong><span>来自 2023–2025</span></div>
+          <div><strong>48.4%</strong><span>含 arXiv 标记</span></div>
+        </div>
+        <div class="missing-method"><b>缺失的系统综述要素</b><p>检索字符串 · 数据库范围 · 纳入/排除 · 双人筛选 · 质量评分 · 效应量合成 · 发表偏倚</p></div>
+        <p class="takeaway">“及时而广”与“可复现地综合证据”是两件事。</p>
+      </div>
+      <aside class="speaker-note">年份与 arXiv 占比来自对 1606 条书目记录的文本统计。预印本比例高并不自动代表低质量，但说明结论尚未经过长期复现沉淀。方法上，本文是 narrative survey，不是 systematic review。</aside>
+    </section>
+
+    <section class="slide theme-warning" id="slide-12" data-title="第 20 章出现高影响引文错配" aria-hidden="true">
+      <div class="slide-inner mismatch-composition">
+        <div class="chapter-mark">11 · CITATION MISMATCH</div>
+        <h2>第 20 章出现<br><strong>高影响引文错配</strong></h2>
+        <div class="mismatch-list">
+          <div><b>[505]</b><span>动态复合权重</span><i>≠</i><em>Model-based active exploration</em></div>
+          <div><b>[1589]</b><span>递归目标验证</span><i>≠</i><em>Weak-to-strong generalization</em></div>
+          <div><b>[355]</b><span>能力—风险、SPI、图 20.1</span><i>≠</i><em>Agent-Pro</em></div>
+          <div><b>[1606]</b><span>网络规模与智能</span><i>≠</i><em>Subnetwork-to-go</em></div>
+        </div>
+        <p class="takeaway">分类框架仍可用；具体机制、数字与“规律”主张必须降级。</p>
+      </div>
+      <aside class="speaker-note">这是内部一致性审计，不是对所有被引工作的外部复核。逐项指出 PDF 页码：p.286、pp.286–287、pp.288/290、p.293。不要说“整章都错”，准确表述为：分类价值中等，定量与机制实证可信度低。</aside>
+    </section>
+
+    <section class="slide theme-midnight" id="slide-13" data-title="图 20.1 不能推出普遍 safety scaling law" aria-hidden="true">
+      <div class="slide-inner slope-composition">
+        <div class="chapter-mark light">12 · FIGURE 20.1</div>
+        <h2>图 20.1 不能推出普遍的<br><strong>safety scaling law</strong></h2>
+        <div class="slope-visual">
+          <div><span>总体回归 1</span><strong>−0.0003</strong><i class="down-line"></i></div>
+          <div><span>总体回归 2</span><strong>−0.0159</strong><i class="down-line steep"></i></div>
+        </div>
+        <div class="slope-why"><span>方向与正文叙述冲突</span><span>缺样本量与置信区间</span><span>缺攻击集版本与控制变量</span><span>缺外部验证</span></div>
+        <p class="takeaway light-copy">子集可能呈正关系，但异质性不能被压成普遍定律。</p>
+      </div>
+      <aside class="speaker-note">这是全场证据审计的高潮。两条总体回归线均为负，而正文叙述强调风险随能力/规模加速。可能存在模型子集差异，但原文没有给足统计信息。结论应是“待检验假说”，不能用于量化治理阈值。来源：PDF Figure 20.1，p.290。</aside>
+    </section>
+
+    <section class="slide theme-paper" id="slide-14" data-title="三个瓶颈决定 foundation agent 能否成立" aria-hidden="true">
+      <div class="slide-inner bottleneck-composition">
+        <div class="chapter-mark">13 · THE BOTTLENECKS</div>
+        <h2>三个瓶颈决定<br>foundation agent 能否成立</h2>
+        <div class="bottleneck-stack">
+          <article><span>01</span><div><h3>能力是否真正持久？</h3><p>稳定性—可塑性、错误记忆、长期一致性与回滚。</p></div></article>
+          <article><span>02</span><div><h3>评价是否独立可信？</h3><p>同源 judge、代理目标、长期 credit 与安全回退。</p></div></article>
+          <article><span>03</span><div><h3>群体收益是否扣除了成本？</h3><p>固定预算、错误相关性、尾部风险与组织治理。</p></div></article>
+        </div>
+        <p class="takeaway">如果三问都答不清，“进化”“集体智能”“安全扩展”仍只是标签。</p>
+      </div>
+      <aside class="speaker-note">把九类挑战收束成三个可记忆的瓶颈：持久性、评价独立性、群体净价值。它们串联 Part I–IV，也是下一页研究议程的依据。</aside>
+    </section>
+
+    <section class="slide theme-green" id="slide-15" data-title="下一步不是做更大的 demo，而是做会失败的实验" aria-hidden="true">
+      <div class="slide-inner agenda-composition">
+        <div class="chapter-mark light">14 · RESEARCH AGENDA</div>
+        <h2>下一步不是做更大的 demo，<br>而是做<strong>会失败的实验</strong></h2>
+        <ol class="agenda-list">
+          <li><b>01</b><span>自进化等级与 benchmark</span></li>
+          <li><b>02</b><span>独立 evaluator + 版本化 rollback</span></li>
+          <li><b>03</b><span>固定总预算的 MAS scaling</span></li>
+          <li><b>04</b><span>brain-inspired 模块因果消融</span></li>
+          <li><b>05</b><span>可测量的科学 agent intelligence</span></li>
+          <li><b>06</b><span>跨层 provenance、taint 与最小权限</span></li>
+        </ol>
+        <p class="agenda-rule">每个课题必须同时写出：<b>假设 · 指标 · 强基线 · 失败条件</b></p>
+      </div>
+      <aside class="speaker-note">研究议程不逐项展开实验细节，只强调共同规则：课题必须可证伪。优先级顺序：先治理修改闭环，再验证模块与群体的因果价值，然后改造 intelligence 指标和全栈安全机制。</aside>
+    </section>
+
+    <section class="slide theme-midnight" id="slide-16" data-title="真正的进化必须同时满足四个条件" aria-hidden="true">
+      <div class="slide-inner closing-composition">
+        <div class="chapter-mark light">15 · CLOSING</div>
+        <h2>真正的进化，必须同时满足</h2>
+        <div class="closing-words"><span>持久</span><i>+</i><span>可验证</span><i>+</i><span>可迁移</span><i>+</i><span>安全</span></div>
+        <p>否则，它可能只是更昂贵的任务内搜索。</p>
+        <div class="closing-links"><a href="../">阅读完整报告</a><a href="https://arxiv.org/abs/2504.01990" target="_blank" rel="noreferrer">打开源论文 ↗</a></div>
+      </div>
+      <aside class="speaker-note">回扣第一页：Foundation Agent 不是更大的 LLM。它的成立条件是跨任务持久、经独立验证、能够迁移，并且在权限与回滚机制下安全。可以在这里进入 Q&A，不需要单独“谢谢”页。</aside>
+    </section>
+  </main>
+
+  <div class="progress-track" aria-hidden="true"><span id="progress"></span></div>
+  <footer class="deck-controls" aria-label="幻灯片控制">
+    <button type="button" data-action="prev" aria-label="上一张">←</button>
+    <button type="button" data-action="next" aria-label="下一张">→</button>
+    <div class="slide-counter"><strong id="current-number">01</strong><span>/</span><span id="total-number">16</span></div>
+    <div class="control-spacer"></div>
+    <button type="button" data-action="notes" title="演讲者备注（N）">备注</button>
+    <button type="button" data-action="help" title="快捷键（?）">?</button>
+  </footer>
+
+  <div class="overview" id="overview" hidden>
+    <div class="overlay-head"><div><span>DECK OVERVIEW</span><h2>选择一张幻灯片</h2></div><button type="button" data-action="overview-close">关闭 ×</button></div>
+    <div class="overview-grid" id="overview-grid"></div>
+  </div>
+
+  <aside class="notes-drawer" id="notes" hidden aria-label="演讲者备注">
+    <div><span>演讲者备注</span><button type="button" data-action="notes-close">关闭 ×</button></div>
+    <p id="notes-content"></p>
+  </aside>
+
+  <dialog id="help-dialog">
+    <form method="dialog">
+      <div class="dialog-head"><h2>快捷键</h2><button value="close" aria-label="关闭">×</button></div>
+      <dl><div><dt>→ / Space</dt><dd>下一张</dd></div><div><dt>←</dt><dd>上一张</dd></div><div><dt>O</dt><dd>总览</dd></div><div><dt>F</dt><dd>全屏</dd></div><div><dt>N</dt><dd>演讲者备注</dd></div><div><dt>Home / End</dt><dd>首张 / 末张</dd></div></dl>
+    </form>
+  </dialog>
+
+  <script src="./slides.js"></script>
+</body>
+</html>
