@@ -3,116 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#07110e" />
-    <meta
-      name="description"
-      content="一款适配键盘与触屏的现代贪吃蛇小游戏。"
-    />
-    <title>贪吃蛇 · SNAKE 01</title>
+    <meta name="theme-color" content="#081b3a" />
+    <meta name="description" content="Codex 制作并经验证后公开发布的互动原型、研究报告与产品 Demo 索引。" />
+    <title>Codex Demo Lab</title>
     <link rel="stylesheet" href="./styles.css?v=0.1.0" />
   </head>
   <body>
-    <div class="page-glow page-glow--one" aria-hidden="true"></div>
-    <div class="page-glow page-glow--two" aria-hidden="true"></div>
+    <a class="skip-link" href="#demos">跳到 Demo 列表</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Codex Demo Lab 首页">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>CODEX<span>//</span>DEMO</span>
+      </a>
+      <p><span class="status-dot" aria-hidden="true"></span> PUBLIC RELEASE INDEX</p>
+    </header>
 
-    <main class="app-shell">
-      <header class="topbar">
-        <a class="wordmark" href="./" aria-label="返回游戏首页">
-          <span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>SNAKE<span class="wordmark__slash">//</span>01</span>
-        </a>
-        <div class="topbar__meta">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>ARCADE SYSTEM ONLINE</span>
-        </div>
-      </header>
-
-      <section class="game-layout" aria-labelledby="game-title">
-        <aside class="game-info">
-          <div>
-            <p class="eyebrow">经典模式 · CLASSIC</p>
-            <h1 id="game-title">贪吃蛇</h1>
-            <p class="lede">保持移动，吃下能量点。<br />别撞墙，也别撞到自己。</p>
-          </div>
-
-          <div class="scoreboard" aria-label="游戏分数">
-            <div class="score-card score-card--active">
-              <span>当前得分</span>
-              <strong id="score">00</strong>
-            </div>
-            <div class="score-card">
-              <span>最佳记录</span>
-              <strong id="best-score">00</strong>
-            </div>
-            <div class="score-card score-card--wide">
-              <span>速度等级</span>
-              <div class="speed-meter" id="speed-meter" aria-label="速度等级 1">
-                <i class="is-on"></i><i></i><i></i><i></i><i></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="desktop-actions">
-            <button class="button button--primary" id="primary-action" type="button">
-              <span id="primary-action-label">开始游戏</span>
-              <span aria-hidden="true">↗</span>
-            </button>
-            <button class="button button--ghost" id="restart-action" type="button">重新开始</button>
-          </div>
-
-          <div class="key-guide" aria-label="键盘操作说明">
-            <div class="key-guide__keys" aria-hidden="true">
-              <span></span><kbd>↑</kbd><span></span>
-              <kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd>
-            </div>
-            <p>方向键 / WASD<br /><span>空格暂停 · 回车开始</span></p>
-          </div>
-        </aside>
-
-        <div class="play-column">
-          <div class="arena-frame" id="arena-frame">
-            <div class="arena-corners" aria-hidden="true"></div>
-            <canvas
-              id="game-canvas"
-              width="720"
-              height="720"
-              role="img"
-              aria-label="贪吃蛇游戏区域"
-            ></canvas>
-            <div class="arena-overlay" id="arena-overlay">
-              <div class="overlay-icon" aria-hidden="true"><span></span><span></span><span></span></div>
-              <p class="overlay-kicker" id="overlay-kicker">SNAKE 01</p>
-              <h2 id="overlay-title">准备好了吗？</h2>
-              <p id="overlay-copy">使用方向键、WASD 或触屏按钮控制方向</p>
-              <button class="button button--primary overlay-button" id="overlay-action" type="button">
-                开始游戏 <span aria-hidden="true">↗</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="mobile-scorebar" aria-label="移动端游戏状态">
-            <span>得分 <strong id="mobile-score">00</strong></span>
-            <span>最佳 <strong id="mobile-best">00</strong></span>
-            <button id="mobile-pause" type="button">开始</button>
-          </div>
-
-          <div class="touch-controls" aria-label="触屏方向控制">
-            <span></span>
-            <button type="button" data-direction="up" aria-label="向上">↑</button>
-            <span></span>
-            <button type="button" data-direction="left" aria-label="向左">←</button>
-            <button type="button" data-direction="down" aria-label="向下">↓</button>
-            <button type="button" data-direction="right" aria-label="向右">→</button>
-          </div>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">BUILD · VERIFY · PUBLISH</p>
+        <h1 id="page-title">把想法做成<br /><span>可以直接体验的作品。</span></h1>
+        <p class="hero-copy">这里汇集经过测试后获准公开的 Codex Demo。每个项目都有独立、稳定的子目录，根地址只负责索引与导航。</p>
+        <div class="hero-meta" aria-label="站点统计">
+          <div><strong>02</strong><span>已发布 Demo</span></div>
+          <div><strong>100%</strong><span>独立子路径</span></div>
+          <div><strong>HTTPS</strong><span>公开访问</span></div>
         </div>
       </section>
 
-      <footer class="footer">
-        <p><span class="status-dot" aria-hidden="true"></span><span id="live-status" role="status" aria-live="polite">等待开始</span></p>
-        <p>NO TRACKING · PLAY LOCAL</p>
-      </footer>
+      <section class="demo-section" id="demos" aria-labelledby="demo-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RELEASES</p>
+            <h2 id="demo-title">已发布</h2>
+          </div>
+          <p>选择一个项目开始体验</p>
+        </div>
+        <div class="demo-grid">
+          <article class="demo-card" data-accent="blue">
+            <div class="demo-card__top">
+              <span class="demo-card__index">01</span>
+              <span class="demo-card__category">互动 Demo · <time datetime="2026-08-09">2026-08-09</time></span>
+            </div>
+            <h3>贪吃蛇 · SNAKE 01</h3>
+            <p>适配键盘与触屏的零依赖浏览器小游戏，支持暂停、重开、本地最高分与逐级加速。</p>
+            <a class="demo-card__link" href="./snake/">开始游戏</a>
+          </article>
+          <article class="demo-card" data-accent="rust">
+            <div class="demo-card__top">
+              <span class="demo-card__index">02</span>
+              <span class="demo-card__category">学术研究 · <time datetime="2026-08-10">2026-08-10</time></span>
+            </div>
+            <h3>Foundation Agents 深度分析</h3>
+            <p>从统一框架、证据强度、系统挑战和可证伪研究方向审视 Foundation Agents 综述。</p>
+            <a class="demo-card__link" href="./foundationagent/">阅读报告</a>
+          </article>
+        </div>
+      </section>
     </main>
 
-    <script type="module" src="./game.js?v=0.1.0"></script>
+    <footer id="publication-footer">
+      <div class="byline">作者：<b>辛海洋</b></div>
+      <div class="pubdate">发布日期：<time datetime="2026-08-10">2026-08-10</time></div>
+    </footer>
   </body>
 </html>

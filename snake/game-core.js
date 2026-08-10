@@ -11,7 +11,6 @@ const FASTEST_TICK_MS = 70;
 export function positionsEqual(a, b) {
   return a.x === b.x && a.y === b.y;
 }
-
 export function isOpposite(first, second) {
   return first.x + second.x === 0 && first.y + second.y === 0;
 }
@@ -145,4 +144,3 @@ export function advanceGame(state, rng = Math.random) {
     tickMs: speedForScore(score),
   };
 }
-

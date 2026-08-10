@@ -366,4 +366,3 @@ document.addEventListener("visibilitychange", () => {
 
 resizeCanvas();
 render();
-
