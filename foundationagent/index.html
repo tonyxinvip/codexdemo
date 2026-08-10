@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="对 Foundation Agents 综述的中文深度分析：全文框架、核心观点、技术分类、关键挑战、证据审计与研究议程。">
+  <meta name="theme-color" content="#0b1020">
+  <title>Foundation Agents 综述深度分析</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="顶部导航">
+      <a class="brand" href="../">CODEXDEMO</a>
+      <div class="top-actions">
+        <a href="#method">方法</a>
+        <a class="source-link" href="https://arxiv.org/abs/2504.01990" target="_blank" rel="noreferrer">源论文 ↗</a>
+      </div>
+    </nav>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">PAPER DEEP DIVE · 396 PAGES · 3 PARALLEL AGENTS</p>
+        <h1>Foundation Agents<br><span>综述深度分析</span></h1>
+        <p class="dek">从脑启发智能，到自进化、多智能体协作与安全系统：一份将论文主张、证据强度与可证伪研究方向分开呈现的中文技术报告。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#summary">阅读结论</a>
+          <a class="button secondary" href="#research">研究方向</a>
+        </div>
+      </div>
+      <aside class="verdict" aria-label="总体判断">
+        <p class="verdict-label">一句话判断</p>
+        <p>这是一份<strong>高覆盖的研究地图</strong>，不是经过验证的统一理论、系统综述或因果证据汇总。</p>
+        <div class="grades" aria-label="定性评级">
+          <div><span>B</span><small>导航价值</small></div>
+          <div><span>C−</span><small>证据综合</small></div>
+          <div><span>D</span><small>高风险决策依据</small></div>
+        </div>
+        <p class="fineprint">评级为本报告的审计判断，并非论文原始评分。</p>
+      </aside>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="toc" aria-label="报告目录">
+      <p>报告目录</p>
+      <a href="#summary">01 技术摘要</a>
+      <a href="#framework">02 全文框架</a>
+      <a href="#formalism">03 统一形式化</a>
+      <a href="#taxonomy">04 技术分类</a>
+      <a href="#claims">05 核心观点</a>
+      <a href="#challenges">06 关键挑战</a>
+      <a href="#evidence">07 证据审计</a>
+      <a href="#confidence">08 置信度</a>
+      <a href="#research">09 研究方向</a>
+      <a href="#method">10 方法与边界</a>
+    </aside>
+
+    <main id="content">
+      <section id="summary" class="section intro-section">
+        <div class="section-kicker">01 · EXECUTIVE SUMMARY</div>
+        <h2>技术摘要</h2>
+        <div class="answer-grid">
+          <article class="answer-card positive">
+            <p class="card-tag">最强贡献</p>
+            <h3>统一接口语言与跨模块导航</h3>
+            <p>Agent loop、记忆生命周期、在线/离线/混合改进、多智能体组织维度，以及从 LLM 延伸到完整 agent stack 的安全攻击面。</p>
+          </article>
+          <article class="answer-card caution">
+            <p class="card-tag">最弱环节</p>
+            <h3>类比、概念膨胀与证据外推</h3>
+            <p>脑启发多为功能类比；“自进化”混合任务内搜索与持久自修改；MAS 收益常受额外计算预算混杂；safety scaling 证据不足。</p>
+          </article>
+          <article class="answer-card neutral">
+            <p class="card-tag">最佳用法</p>
+            <h3>选题地图与架构检查表</h3>
+            <p>适合定位术语、模块和开放问题；不宜直接用于技术成熟度排名、机制有效性证明或高风险部署决策。</p>
+          </article>
+        </div>
+        <blockquote>
+          真正需要追问的不是“agent 是否更强”，而是：它是在获得可迁移的新能力，还是仅以更多计算完成任务内搜索？
+        </blockquote>
+      </section>
+
+      <section id="framework" class="section">
+        <div class="section-kicker">02 · STRUCTURE</div>
+        <h2>全文框架：时间扩展与社会扩展</h2>
+        <p class="lead">叙事先定义有内部状态的单体闭环，再加入长期改进能力；随后将一个 agent 扩展成社会系统，最后讨论能力、交互面与现实影响扩大后的风险。</p>
+        <div class="coverage-layout">
+          <div class="coverage-chart" role="img" aria-label="四个部分页数：Part I 115 页，Part II 50 页，Part III 51 页，Part IV 39 页">
+            <div class="bar-row">
+              <div class="bar-label"><strong>Part I</strong><span>单体核心组件</span></div>
+              <div class="bar-track"><span style="--bar:100%"><b>115 页</b></span></div>
+              <div class="bar-share">45.1%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><strong>Part II</strong><span>自进化与科学发现</span></div>
+              <div class="bar-track"><span style="--bar:43.5%"><b>50 页</b></span></div>
+              <div class="bar-share">19.6%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><strong>Part III</strong><span>多智能体协作</span></div>
+              <div class="bar-track"><span style="--bar:44.3%"><b>51 页</b></span></div>
+              <div class="bar-share">20.0%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><strong>Part IV</strong><span>安全与扩展风险</span></div>
+              <div class="bar-track"><span style="--bar:33.9%"><b>39 页</b></span></div>
+              <div class="bar-share">15.3%</div>
+            </div>
+          </div>
+          <aside class="chart-note">
+            <strong>255 页</strong>
+            <span>四个主题部分合计</span>
+            <p>Part I 接近一半；安全约占 15%。页数只说明覆盖重心，不代表成熟度或证据强度。</p>
+          </aside>
+        </div>
+        <div class="part-grid">
+          <article><span>01</span><h3>Brain-inspired</h3><p>认知、记忆、世界模型、奖励、情绪、感知与行动。</p><small>Ch. 2–8 · PDF 38–152</small></article>
+          <article><span>02</span><h3>Self-evolving</h3><p>优化对象、算法、在线/离线/混合更新与科学发现闭环。</p><small>Ch. 9–12 · PDF 153–202</small></article>
+          <article><span>03</span><h3>Collaborative</h3><p>MAS 类型、团队、拓扑、交互、决策、协议与集体智能。</p><small>Ch. 13–18 · PDF 203–253</small></article>
+          <article><span>04</span><h3>Safe systems</h3><p>内生/外生风险、全栈攻击面、superalignment 与安全扩展。</p><small>Ch. 19–20 · PDF 254–292</small></article>
+        </div>
+      </section>
+
+      <section id="formalism" class="section dark-section">
+        <div class="section-kicker">03 · UNIFIED FORMALISM</div>
+        <h2>统一形式化：有内部状态的闭环</h2>
+        <p class="lead">论文最有用的抽象，是将 foundation agent 从“LLM + tools”改写为内部 mental state 与外部世界持续相互作用的系统。</p>
+        <div class="formula-card">
+          <div class="formula-line"><i>内部状态</i><code>M<sub>t</sub> = { mem, wm, emo, goal, rew, … }</code></div>
+          <div class="formula-grid">
+            <div><i>Perception</i><code>o<sub>t</sub> = P(s<sub>t</sub>, M<sub>t−1</sub>)</code></div>
+            <div><i>Learning</i><code>M<sub>t</sub> = L(M<sub>t−1</sub>, a<sub>t−1</sub>, o<sub>t</sub>)</code></div>
+            <div><i>Reasoning</i><code>a<sub>t</sub> = R(M<sub>t</sub>)</code></div>
+            <div><i>Execution</i><code>a′<sub>t</sub> = E(a<sub>t</sub>)</code></div>
+            <div><i>Transition</i><code>s<sub>t+1</sub> = T(s<sub>t</sub>, a′<sub>t</sub>)</code></div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3>它解释了什么</h3>
+            <p>规划和决策可以看作内部 action；感知和执行都应受到目标、记忆、情绪与 world model 调制，而不是静态输入输出管线。</p>
+          </div>
+          <div>
+            <h3>它没有证明什么</h3>
+            <p>这更像模块接口规范。论文没有实现覆盖全部模块的端到端系统，也没有系统消融、稳定性定理、样本复杂度或安全保证；环境转移的确定/随机语义还存在不一致。</p>
+          </div>
+        </div>
+        <div class="mas-extension">
+          <p class="card-tag">MAS EXTENSION</p>
+          <p>多智能体扩展为：每个 agent 保留私有 mental state，同时读写共享工作区 <code>B<sub>t</sub></code>，并受社会规范 <code>Σ</code>、通信、知识共享、协调算子与组织拓扑约束；当 <code>n = 1</code> 时退化为单体系统。</p>
+        </div>
+      </section>
+
+      <section id="taxonomy" class="section">
+        <div class="section-kicker">04 · TECHNICAL TAXONOMY</div>
+        <h2>十层技术分类地图</h2>
+        <p class="lead">原文分类并非严格互斥且完备：planning、memory、world model、tool 与 learning 多次交叉。这里将它们统一为“分类—设计问题—主要失效模式”。</p>
+        <div class="taxonomy-grid">
+          <article><b>01</b><h3>认知</h3><p><strong>分类：</strong>学习、结构化/非结构化推理、规划与决策。</p><p><strong>失效：</strong>模式匹配冒充因果理解；长时规划误差累积。</p></article>
+          <article><b>02</b><h3>记忆</h3><p><strong>分类：</strong>感官/短期/长期；获取、编码、推导、检索、利用。</p><p><strong>失效：</strong>污染、过期、隐私泄露、遗忘与检索偏置。</p></article>
+          <article><b>03</b><h3>世界模型</h3><p><strong>分类：</strong>隐式、显式、模拟器、混合/指令驱动。</p><p><strong>失效：</strong>模型错设、OOD 失真、rollout 复合误差。</p></article>
+          <article><b>04</b><h3>奖励与情绪</h3><p><strong>分类：</strong>外在/内在/混合/层级奖励；类别/维度情绪。</p><p><strong>失效：</strong>reward hacking、代理目标、操纵风险。</p></article>
+          <article><b>05</b><h3>感知</h3><p><strong>分类：</strong>单模态、跨模态、多模态；多层反馈优化。</p><p><strong>失效：</strong>模态支配、浅层相关、时序断裂、对抗输入。</p></article>
+          <article><b>06</b><h3>行动与工具</h3><p><strong>分类：</strong>语言/数字/物理动作；工具发现、创建与调用。</p><p><strong>失效：</strong>多步 credit 混乱、越权、供应链与不可逆后果。</p></article>
+          <article><b>07</b><h3>自进化</h3><p><strong>分类：</strong>prompt/workflow/tool/holistic；online/offline/hybrid。</p><p><strong>失效：</strong>同源 judge、Goodhart、漂移、遗忘与概念膨胀。</p></article>
+          <article><b>08</b><h3>科学发现</h3><p><strong>分类：</strong>假设检验、协议/工具创新、数据分析与推导。</p><p><strong>失效：</strong>真实分布不可观测、窄域外推、成本与风险缺位。</p></article>
+          <article><b>09</b><h3>多智能体</h3><p><strong>分类：</strong>团队、拓扑、交互、决策、协议与集体智能。</p><p><strong>失效：</strong>错误相关、通信瓶颈、角色漂移、串谋与成本混杂。</p></article>
+          <article><b>10</b><h3>安全</h3><p><strong>分类：</strong>脑/感知/行动/工具；记忆/环境/其他 agent。</p><p><strong>失效：</strong>注入、持久污染、越权、环境操纵与群体级联。</p></article>
+        </div>
+      </section>
+
+      <section id="claims" class="section">
+        <div class="section-kicker">05 · CORE CLAIMS</div>
+        <h2>四个核心判断</h2>
+        <div class="claim-list">
+          <article>
+            <div class="claim-num">A</div>
+            <div><h3>脑启发：应检验具体机制，而不是崇拜类比</h3><p>多时间尺度记忆巩固、主动感知、全局广播和奖励调制是有价值的设计假设；但目前几乎没有证据表明“脑启发”标签本身优于同规模非脑启发基线。</p></div>
+          </article>
+          <article>
+            <div class="claim-num">B</div>
+            <div><h3>自进化：真正难点是治理修改闭环</h3><p>任务内反思、开发者离线微调与 agent 自主修改代码或权重，具有完全不同的自主性、持久性和风险。研究必须标注谁授权、改什么、是否持久、由谁验收与如何回滚。</p></div>
+          </article>
+          <article>
+            <div class="claim-num">C</div>
+            <div><h3>多智能体：规模不等于集体智能</h3><p>真正的问题是：在固定 token、调用、延迟或成本预算下，边际能力是否仍增长；错误相关性、信息瓶颈、权力集中与串谋风险怎样随组织结构变化。</p></div>
+          </article>
+          <article>
+            <div class="claim-num">D</div>
+            <div><h3>安全：攻击面来自整个闭环</h3><p>风险不仅来自 LLM“脑”，也来自感知、动作、工具、记忆、环境和其他 agent。控制应从单轮过滤升级为 provenance、最小权限、轨迹监控、隔离、回滚与恢复。</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="challenges" class="section challenge-section">
+        <div class="section-kicker">06 · KEY CHALLENGES</div>
+        <h2>九类关键挑战</h2>
+        <div class="challenge-grid">
+          <article><span>01</span><h3>稳定性—可塑性</h3><p>在线适应容易漂移、遗忘或固化错误；离线更新稳定但滞后。</p></article>
+          <article><span>02</span><h3>因果 grounding</h3><p>语言推理强于可校准环境预测；长时 world-model 误差会复合。</p></article>
+          <article><span>03</span><h3>多尺度信用分配</h3><p>token、turn、subgoal 与 trajectory 的奖励粒度并不一致。</p></article>
+          <article><span>04</span><h3>评价器可信度</h3><p>LLM optimizer 与 judge 共享偏差，系统改 evaluator 时更易 Goodhart。</p></article>
+          <article><span>05</span><h3>连续行动接口</h3><p>语言计划必须映射到 GUI、API、机器人和实验设备的可恢复控制。</p></article>
+          <article><span>06</span><h3>知识质量与删除</h3><p>长期 memory 需要来源、时间、证据等级、冲突、隐私与撤回语义。</p></article>
+          <article><span>07</span><h3>预算与错误相关</h3><p>更多 agent 常同时意味着更多计算，而同源模型又会共享错误。</p></article>
+          <article><span>08</span><h3>异步组织治理</h3><p>现实还要处理延迟、退出、拜占庭行为、角色漂移与资源竞争。</p></article>
+          <article><span>09</span><h3>自主性扩大风险</h3><p>修改 prompt、memory、tool、code、weights 或 reward 需要逐级权限与回滚。</p></article>
+        </div>
+      </section>
+
+      <section id="evidence" class="section evidence-section">
+        <div class="section-kicker">07 · EVIDENCE AUDIT</div>
+        <h2>证据薄弱处</h2>
+        <div class="evidence-stats">
+          <div><strong>1,606</strong><span>参考文献</span></div>
+          <div><strong>76.7%</strong><span>2023–2025 文献</span></div>
+          <div><strong>48.4%</strong><span>含 arXiv preprint 标记</span></div>
+          <div><strong>0</strong><span>系统综述筛选流程</span></div>
+        </div>
+        <div class="two-col evidence-copy">
+          <div>
+            <h3>不是系统综述</h3>
+            <p>全文没有可复现的检索字符串、数据库范围、纳入/排除标准、双人筛选、质量评分、效应量合成或发表偏倚分析。参考文献多，不能替代证据选择透明度。</p>
+          </div>
+          <div>
+            <h3>证据类型被并排书写</h3>
+            <p>神经科学类比、数学草图、benchmark 数字、系统案例和未来愿景连续出现，容易制造相同证据权重的错觉。强证据主要集中在窄域、可脚本化或高度工程化环境。</p>
+          </div>
+        </div>
+        <div class="red-flag">
+          <p class="card-tag">HIGH-IMPACT CITATION MISMATCHES</p>
+          <h3>第 20 章至少四处“主张—参考文献”错配</h3>
+          <ul>
+            <li><strong>PDF p.286 · [505]</strong>：被用于动态复合权重；书目实际是 <em>Model-based active exploration</em>。</li>
+            <li><strong>PDF pp.286–287 · [1589]</strong>：被用于递归目标验证；书目实际是 <em>Weak-to-strong generalization</em>。</li>
+            <li><strong>PDF pp.288, 290 · [355]</strong>：被用于能力—风险关系、SPI 与图 20.1；书目实际是 <em>Agent-Pro</em>。</li>
+            <li><strong>PDF p.293 · [1606]</strong>：被用于网络智能随规模增长；书目实际是 <em>Subnetwork-to-go</em>。</li>
+          </ul>
+          <p>错配不推翻安全章节的分类价值，但会显著降低具体机制、数字和“规律”主张的可信度。</p>
+        </div>
+        <div class="figure-audit">
+          <div>
+            <p class="card-tag">FIGURE 20.1</p>
+            <h3>图表不支持“普遍安全扩展律”</h3>
+            <p>两条总体回归线的斜率均为负，与正文关于能力或规模上升导致攻击成功率普遍加速的叙述并不一致。部分开放模型子集可能呈正关系，但整体异质性不能被压成普遍定律。</p>
+          </div>
+          <div class="slope-box"><span>总体斜率</span><strong>−0.0003</strong><strong>−0.0159</strong><small>原文还缺少样本量、置信区间、攻击集版本、控制变量、函数形式与外部验证。</small></div>
+        </div>
+      </section>
+
+      <section id="confidence" class="section">
+        <div class="section-kicker">08 · CONFIDENCE</div>
+        <h2>主张的证据置信度</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>主张 / 贡献</th><th>置信度</th><th>依据与用法</th></tr></thead>
+            <tbody>
+              <tr><td>高覆盖的研究导航与术语地图</td><td><span class="pill high">中高</span></td><td>适合综述骨架与架构 checklist；不适合证据排名。</td></tr>
+              <tr><td>统一 agent / MAS 形式化</td><td><span class="pill mid">中</span></td><td>可作接口规范；不能当性能、稳定性或安全定理。</td></tr>
+              <tr><td>记忆生命周期、改进时机与组织维度</td><td><span class="pill high">中高</span></td><td>工程价值较强，但需要补充分界规则和可测指标。</td></tr>
+              <tr><td>脑启发映射本身带来能力增益</td><td><span class="pill low">低—中</span></td><td>缺等参数的非脑启发基线和机制消融。</td></tr>
+              <tr><td>自进化形成长期自治能力增长</td><td><span class="pill low">低—中</span></td><td>大量案例其实是任务内搜索或外部离线优化。</td></tr>
+              <tr><td>多智能体规模提升集体智能</td><td><span class="pill low">低—中</span></td><td>需固定总预算、强单体基线与组织消融。</td></tr>
+              <tr><td>科学 agent 的窄域闭环价值</td><td><span class="pill mid">中</span></td><td>若干案例有量化结果，但环境高度专用。</td></tr>
+              <tr><td>负 KL 是通用 intelligence 指标</td><td><span class="pill critical">低</span></td><td>真实分布未知、事件空间变化，且仅理想条件下期望单调。</td></tr>
+              <tr><td>全栈安全攻击面分类</td><td><span class="pill mid">中</span></td><td>视角实用；应转为 entry point × failure mechanism 矩阵。</td></tr>
+              <tr><td>普遍的能力/规模—风险扩展律</td><td><span class="pill critical">低</span></td><td>图文方向冲突、引文错配、缺控制与外部验证。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="research" class="section research-section">
+        <div class="section-kicker">09 · RESEARCH AGENDA</div>
+        <h2>六个可证伪研究方向</h2>
+        <p class="lead">每个方向都必须回答“是否有效、为何有效、何时失败”，并明确指标、基线与失败条件。</p>
+        <div class="research-list">
+          <article>
+            <div class="priority">P1</div>
+            <div><h3>可验证的自进化等级与 benchmark</h3><p><strong>假设：</strong>在独立验收和跨分布测试下，持久修改仍产生正的能力净增益。</p><p><strong>指标：</strong>能力、成本、延迟、遗忘、安全回退、校准、跨任务保持。</p><p><strong>失败：</strong>增益仅存在于原 judge/原任务，或持久后出现性能与安全回退。</p></div>
+          </article>
+          <article>
+            <div class="priority">P2</div>
+            <div><h3>独立 evaluator + 版本化 rollback</h3><p><strong>假设：</strong>解耦 optimizer 与 evaluator，并加入 canary/回滚，可降低 Goodhart 与灾难性回退。</p><p><strong>基线：</strong>同模型 self-judge；无版本、无 canary 的直接部署。</p><p><strong>失败：</strong>相关错误没有下降，或治理成本抵消全部收益。</p></div>
+          </article>
+          <article>
+            <div class="priority">P3</div>
+            <div><h3>固定总预算的 MAS scaling</h3><p><strong>假设：</strong>特定异质团队与动态拓扑在等 token、调用和延迟下仍优于最强单体。</p><p><strong>指标：</strong>边际增益、通信成本、错误相关、尾部风险、公平性。</p><p><strong>失败：</strong>控制预算后优势消失，或协调成本和尾部风险更高。</p></div>
+          </article>
+          <article>
+            <div class="priority">P4</div>
+            <div><h3>Brain-inspired 模块的因果消融</h3><p><strong>假设：</strong>多时间尺度巩固、主动感知或全局广播至少一项在等参数下改善 OOD 与样本效率。</p><p><strong>基线：</strong>同参数非脑启发架构；移除对应机制。</p><p><strong>失败：</strong>收益只来自额外容量或训练预算，且跨任务无法复现。</p></div>
+          </article>
+          <article>
+            <div class="priority">P5</div>
+            <div><h3>可测量的科学 agent intelligence</h3><p><strong>假设：</strong>固定事件空间的 prequential/干预指标能预测后续发现效率与跨域迁移。</p><p><strong>指标：</strong>log score、校准、干预准确率、信息增益/成本/风险、迁移斜率。</p><p><strong>失败：</strong>指标与真实发现无关，或可被廉价信息和表示选择操纵。</p></div>
+          </article>
+          <article>
+            <div class="priority">P6</div>
+            <div><h3>跨层 provenance、taint 与最小权限</h3><p><strong>假设：</strong>对 prompt→memory→tool→action→agent 消息做污点传播与 capability 权限，可减少持续污染和级联。</p><p><strong>指标：</strong>攻击成功率、驻留时间、blast radius、误阻率、恢复时间。</p><p><strong>失败：</strong>攻击轻易绕过追踪，或系统开销和误阻率不可接受。</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="method" class="section method-section">
+        <div class="section-kicker">10 · METHOD & LIMITS</div>
+        <h2>方法与边界</h2>
+        <div class="method-grid">
+          <article><span>01</span><h3>全文抽取</h3><p>对 396 页 PDF 做布局文本抽取，覆盖正文、图表标题与全部 1606 条参考文献。</p></article>
+          <article><span>02</span><h3>视觉核查</h3><p>核查标题、目录、统一框架图、脑启发映射、自进化、多智能体、安全与结论等关键页面。</p></article>
+          <article><span>03</span><h3>三路并行分析</h3><p>分别处理架构/自进化、协作/安全，以及方法/证据审计，最终统一分类与结论。</p></article>
+          <article><span>04</span><h3>内部一致性审计</h3><p>逐项核对第 20 章高影响引文与图 20.1；统计参考文献年份和 arXiv 标记。</p></article>
+        </div>
+        <div class="limit-note">
+          <strong>边界：</strong>本报告没有逐篇外部验证 1606 条参考文献，也没有复现实验。“引用错配”属于论文内部一致性审计；四部分页数按目录起始页分段估算，仅用于描述覆盖重心。
+        </div>
+      </section>
+
+      <section class="section closing">
+        <p class="eyebrow">FINAL TAKEAWAY</p>
+        <h2>把它当作地图，<br>不要把地图当作证据。</h2>
+        <p>最值得继续追踪的主线，是受控且可回滚的持久自修改、固定预算的多智能体因果评估、可测量的世界模型/科学发现指标，以及跨层 provenance 与权限机制。</p>
+        <a class="button primary" href="#top">返回顶部 ↑</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div><strong>Foundation Agents 综述深度分析</strong><span>由 Codex 与 3 个并行分析 agent 协作完成</span></div>
+    <div><span>分析日期：2026-08-09</span><a href="https://arxiv.org/abs/2504.01990" target="_blank" rel="noreferrer">arXiv:2504.01990 ↗</a></div>
+  </footer>
+</body>
+</html>
